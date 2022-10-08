@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unbalance Current Calculator for 11kV capacitor bank</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="js/read-csv.js" ></script>
+<body onload="change_name()">
+    <table style="width:95%">
+        <tr>
+          <td class="capname" onclick="cap_clicked(1)" id="oldnamec1">R1</td>
+          <td class="capname" onclick="cap_clicked(2)" id="oldnamec2">R2</td>
+          <td class="capname" onclick="cap_clicked(3)" id="oldnamec3">R3</td>
+          <td class="capname" onclick="cap_clicked(7)" id="oldnamec7">Y1</td>
+          <td class="capname" onclick="cap_clicked(8)" id="oldnamec8">Y2</td>
+          <td class="capname" onclick="cap_clicked(9)" id="oldnamec9">Y3</td>
+          <td class="capname" onclick="cap_clicked(13)" id="oldnamec13">B1</td>
+          <td class="capname" onclick="cap_clicked(14)" id="oldnamec14">B2</td>
+          <td class="capname" onclick="cap_clicked(15)" id="oldnamec15">B3</td>
+        </tr>
+        <!---->
+        <tr>
+          <td><input class="number" type="number"  name="oldR1" id="c1" style="width:90%"  value="22" ></td>
+          <td><input class="number" type="number" name="oldR2" id="c2" style="width:90%" value="22"></td>
+          <td><input class="number" type="number" name="oldR3" id="c3" style="width:90%" value="22"></td>
+          <td><input class="number" type="number" name="oldY1" id="c7" style="width:90%" value="22"></td>
+          <td><input class="number" type="number" name="oldY2" id="c8" style="width:90%" value="22"></td>
+          <td><input class="number" type="number" name="oldY3" id="c9" style="width:90%" value="22"></td>
+          <td><input class="number" type="number" name="oldB1" id="c13" style="width:90%" value="22"></td>
+          <td><input class="number" type="number" name="oldB2" id="c14" style="width:90%" value="22"></td>
+          <td><input class="number" type="number" name="oldB3" id="c15" style="width:90%" value="22"></td>
+        </tr>
+        <tr>
+            <td class="capname" onclick="cap_clicked(4)" id="oldnamec4">R4</td>
+            <td class="capname" onclick="cap_clicked(5)" id="oldnamec5">R5</td>
+            <td class="capname" onclick="cap_clicked(6)" id="oldnamec6">R6</td>
+            <td class="capname" onclick="cap_clicked(10)" id="oldnamec10">Y4</td>
+            <td class="capname" onclick="cap_clicked(11)" id="oldnamec11">Y5</td>
+            <td class="capname" onclick="cap_clicked(12)" id="oldnamec12">Y6</td>
+            <td class="capname" onclick="cap_clicked(16)" id="oldnamec16">B4</td>
+            <td class="capname" onclick="cap_clicked(17)" id="oldnamec17">B5</td>
+            <td class="capname" onclick="cap_clicked(18)" id="oldnamec18">B6</td>
+          </tr>
+          <!---->
+          <tr>
+            <td><input class="number" type="number" name="oldR4" id="c4" style="width:90%" value="22"></td>
+            <td><input class="number" type="number" name="oldR5" id="c5" style="width:90%" value="22"></td>
+            <td><input class="number" type="number" name="oldR6" id="c6" style="width:90%" value="22"></td>
+            <td><input class="number" type="number" name="oldY4" id="c10" style="width:90%" value="22"></td>
+            <td><input class="number" type="number" name="oldY5" id="c11" style="width:90%" value="22"></td>
+            <td><input class="number" type="number" name="oldY6" id="c12" style="width:90%" value="22"></td>
+            <td><input class="number" type="number" name="oldB4" id="c16" style="width:90%" value="22"></td>
+            <td><input class="number" type="number" name="oldB5" id="c17" style="width:90%" value="22"></td>
+            <td><input class="number" type="number" name="oldB6" id="c18" style="width:90%" value="22"></td>
+          </tr>
+   
+      </table >
+      <div class="btndiv"  >
+
+
+      
+      <button class="onebtn" onclick="classicswap(1)" id= "1units">1 Unit</button>
+      <button class="normalbtn" onclick="classicswap(2)" id= "2units">2 Units</button>
+      <button class="normalbtn" onclick="minimize_units(3,false);" id= "3units">3 Units</button>
+  <br>
+      <button class="normalbtn" onclick="minimize_units(4,true);" id= "4units">4 Units(*)</button>
+      <button class="normalbtn" onclick="minimize_units(5,true)" id= "5units">5 Units (*)</button>
+     <button class="normalbtn" onclick="minimize_units(6,true)" id= "6units">6 Units (*)</button>
+    
+     
+<br>
+      <button class="returnbtn" onclick="return_once(); calculate();" id= "return">Return</button>
+     
+      <button class="otherbtn"  onclick="change_name()" id= "changename">Change Labels</button>
+      <button class="otherbtn" onclick="randomnize()" id= "random">Randomnize for test</button>
+      <button class="otherbtn" onclick="reset22()" id= "reset22">Reset 22</button>
+      <br>
+      <button class="savebtn" onclick="save(1)" id= "save1">Save 1</button>
+      <button class="savebtn" onclick="save(2)" id= "save2">Save 2</button>
+      <button class="savebtn" onclick="save(3)" id= "save3">Save 3</button>
+      <button class="loadbtn" onclick="load(1)" id= "load1">Load 1</button>
+      <button class="loadbtn" onclick="load(2)" id= "load2">Load 2</button>
+      <button class="loadbtn" onclick="load(3)" id= "load3">Load 3</button>
+    </div>
+    <div>
+        <table  class= "result" >
+        <tr   >
+            <td   >
+                <b>Unbalance Current:</b>
+               
+        
+                
+            </td>
+            <td  >
+                <b>Moving Steps:</b>
+                
+            </td>
+        </tr>
+        <tr>
+          <td style=" width: 40%; vertical-align: text-top; " >
+              <b id="current" >Nan</b>  
+          </td>
+          <td style="  vertical-align: text-top; ">
+              <b id="steps"></b>
+          </td>
+        </tr>
+        </table>
+        <br>
+        <H5>(*)Based on random sampling.</H5>
+
+    </div>
+    
+    
+       
+</body>
+
+</html>
